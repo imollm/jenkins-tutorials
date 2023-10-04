@@ -1,0 +1,26 @@
+pipeline {
+    agent { label 'master' }
+    environment {
+        appName = 'variable'
+    }
+    stages {
+        stage('Paso 1') {
+            steps {
+                script {
+                    sh "echo 'Paso 1'"
+                }
+            }
+        }
+        post {
+            always {
+                sh "echo 'Post Always'"
+            }
+            success {
+                sh "echo 'Post Success'"
+            }
+            failure {
+                sh "echo 'Post Failure'"
+            }
+        }
+    }
+}
